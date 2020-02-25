@@ -35,7 +35,7 @@
             </div>
             <div class="col-3 my-auto bg-secondary outer">
                 <div style="flex-grow : 1;" class="fixed">
-                    <div class="scrollit">
+                    <div id="scroll-pane" class="scrollit">
                         <ul id="message-history">
                             <li>
                                 This is samepl
@@ -47,17 +47,24 @@
             </div>
         </div>
     </section>
+    <%- include('../views/partials/footer.ejs')%>
 
     <script>
-        function addMessageBubble(username, message, time) {
-            $("#message-history").append('<li>' + username + " " + message + '</li>');
-        }
-        time_update_interval = setInterval(function () {
-            addMessageBubble("rohit", "This is some sample text", 213.21321);
-        }, 1000)
+        $(document).ready(function () {
+            function addMessageBubble(username, message, time) {
+                $("#message-history").append('<li>' + username + " " + message + '</li>');
+            }
+            time_update_interval = setInterval(function () {
+                addMessageBubble("rohit", "This is some sample text", 213.21321);
+            }, 100)
+            time_update_interval = setInterval(function () {
+                document.getElementById('scroll-pane').scrollTop = 100000000000;
+            }, 100)
+
+        });
+
     </script>
 
-    <%- include('../views/partials/footer.ejs')%>
 
 </body>
 
