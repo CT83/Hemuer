@@ -12,6 +12,18 @@
             flex-flow: column;
             height: 100%;
         }
+
+
+        .fixed {
+            padding-top: 25px;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .scrollit {
+            height: 100%;
+            overflow-y: scroll;
+        }
     </style>
 
     <section class="container-fluid">
@@ -22,12 +34,29 @@
                 </div>
             </div>
             <div class="col-3 my-auto bg-secondary outer">
-                <div style="flex-grow : 1;">
-                    This is sampel
+                <div style="flex-grow : 1;" class="fixed">
+                    <div class="scrollit">
+                        <ul id="message-history">
+                            <li>
+                                This is samepl
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        function addMessageBubble(username, message, time) {
+            $("#message-history").append('<li>' + username + " " + message + '</li>');
+        }
+        time_update_interval = setInterval(function () {
+            addMessageBubble("rohit", "This is some sample text", 213.21321);
+        }, 1000)
+    </script>
+
     <%- include('../views/partials/footer.ejs')%>
 
 </body>
