@@ -5,7 +5,6 @@
 <body data-spy="scroll" data-target="#navbar1" data-offset="60">
 
     <%- include('../views/partials/header.ejs')%>
-    <%- include('../views/partials/footer.ejs')%>
     <style>
         .outer {
             display: flex;
@@ -42,10 +41,14 @@
                             </li>
 
                         </ul>
-                        <%- include('../views/expression_detector.ejs')%>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="webcam-pane">
+            <%- include('../views/expression_detector.ejs')%>
+
         </div>
     </section>
 
@@ -66,6 +69,7 @@
 
     </script>
 
+    <%- include('../views/partials/footer.ejs')%>
 
 </body>
 

@@ -35,9 +35,6 @@ function renderNavBar(navbarId, exampleUri) {
   const navbar = $(navbarId).get(0)
   const pageContainer = $('.page-container').get(0)
 
-  const header = document.createElement('h3')
-  header.innerHTML = examples.find(ex => ex.uri === exampleUri).name
-  pageContainer.insertBefore(header, pageContainer.children[0])
 
   const menuContent = document.createElement('ul')
   menuContent.id = 'slide-out'

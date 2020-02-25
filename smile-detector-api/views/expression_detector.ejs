@@ -2,26 +2,28 @@
 <script src="./javascripts/commons.js"></script>
 <script src="./javascripts/faceDetectionControls.js"></script>
 
-<link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-</head>
 
-<body>
-    <div id="navbar"></div>
-    <div class="center-content page-container">
+<div id="navbar" style="display:none;"></div>
 
-        <div class="progress" id="loader">
-            <div class="indeterminate"></div>
-        </div>
-        <div style="position: relative" class="margin">
-            <video onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted playsinline></video>
-            <canvas id="overlay" />
-        </div>
+<style>
+    .webcam-pane {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+</style>
 
 
-</body>
+<div class="progress" id="loader">
+    <div class="indeterminate"></div>
+</div>
+<div style="position: relative" class="margin">
+    <video onloadedmetadata="onPlay(this)" class="webcam-pane" id="inputVideo" autoplay muted playsinline></video>
+    <canvas class="webcam-pane" id="overlay" />
+</div>
 
 <script>
     let forwardTimes = []
