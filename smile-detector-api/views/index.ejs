@@ -3,21 +3,31 @@
 
 <head>
     <% include('../views/partials/head') %>
+
+    <style>
+        .wrapper {
+            display: grid;
+            grid-template-columns: 8fr 2fr;
+            min-height: 100vh;
+        }
+
+        .wrapper>div {
+            background: #eee;
+            padding: 1em;
+        }
+
+        .wrapper>div:nth-child(odd) {
+            background: #ddd;
+        }
+    </style>
 </head>
 
-<body class="container">
+<body>
+    <div class="wrapper">
+        <div>Box 1</div>
+        <div>Box 2</div>
 
-    <header>
-        <% include('../views/partials/header') %>
-    </header>
-
-    <main>
-        <div class="jumbotron">
-            <h1>This is great</h1>
-            <p>Welcome to templating using EJS</p>
-        </div>
-    </main>
-
+    </div>
     <footer>
         <% include('../views/partials/footer') %>
     </footer>
