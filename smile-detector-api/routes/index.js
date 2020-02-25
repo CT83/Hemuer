@@ -7,6 +7,11 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* GET home page. */
+router.get('/view', function (req, res, next) {
+  res.render('view', { title: 'Express' });
+});
+
 // Registers smiles
 router.post('/register-smile', function (req, res, next) {
   // Validate request
