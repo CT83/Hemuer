@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  database:
+    container_name: smile-det-mongo
+    image: mongo:latest
+
+    volumes:
+      - /mongodb/data:/data/db
+
+    ports:
+      - 27017:27017
+      - 27019:27019
+
+volumes:
+  data:
