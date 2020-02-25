@@ -5,7 +5,7 @@
 <body data-spy="scroll" data-target="#navbar1" data-offset="60">
 
     <%- include('../views/partials/header.ejs')%>
-
+    <%- include('../views/partials/footer.ejs')%>
     <style>
         .outer {
             display: flex;
@@ -42,12 +42,13 @@
                             </li>
 
                         </ul>
+                        <%- include('../views/expression_detector.ejs')%>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <%- include('../views/partials/footer.ejs')%>
+
 
     <script>
         $(document).ready(function () {
@@ -56,10 +57,10 @@
             }
             time_update_interval = setInterval(function () {
                 addMessageBubble("rohit", "This is some sample text", 213.21321);
-            }, 100)
-            time_update_interval = setInterval(function () {
-                document.getElementById('scroll-pane').scrollTop = 100000000000;
-            }, 100)
+            }, 1000)
+            // time_update_interval = setInterval(function () {
+            //     document.getElementById('scroll-pane').scrollTop = 100000000000;
+            // }, 900)
 
         });
 
