@@ -6,7 +6,28 @@
 
     <%- include('../views/partials/header.ejs')%>
 
+    <style>
+        .outer {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+        }
+    </style>
 
+    <section class="container-fluid">
+        <div class="row vh-100">
+            <div class="col-9 my-auto outer">
+                <div style="flex-grow : 1;">
+                    <%- include('../views/video_frame.ejs')%>
+                </div>
+            </div>
+            <div class="col-3 my-auto bg-secondary outer">
+                <div style="flex-grow : 1;">
+                    This is sampel
+                </div>
+            </div>
+        </div>
+    </section>
     <%- include('../views/partials/footer.ejs')%>
 
 </body>
