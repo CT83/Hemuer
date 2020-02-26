@@ -14,6 +14,10 @@
         .wrapper>div:nth-child(odd) {
             background: #ddd;
         }
+
+        .msg-link {
+            color: blue;
+        }
     </style>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet">
@@ -42,7 +46,8 @@
         var USERNAME = generateName()
 
         function addMessageBubble(username, message, time) {
-            $("#message-history").append('<li>' + message + '</li>');
+            time = Math.round(time);
+            $("#message-history").append('<li>' + message + ' at <p onclick="seekTo(' + time + ')" class="msg-link">' + time + '</a> </li>');
         }
         $(document).ready(function () {
             document.getElementById("navbar-username").innerText = USERNAME;

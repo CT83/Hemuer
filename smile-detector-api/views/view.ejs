@@ -52,7 +52,7 @@
         var prevPred;
         time_update_interval = setInterval(function () {
             if (topExpression !== null && prevPred != topExpression) {
-                addMessageBubble("", USERNAME + " was " + topExpression, 213.21321);
+                addMessageBubble("", USERNAME + " was " + topExpression, player.getCurrentTime());
                 prevPred = topExpression;
             }
         }, 1000)
