@@ -44,8 +44,8 @@
         function addMessageBubble(username, message, time) {
             $("#message-history").append('<li>' + message + '</li>');
         }
-
-
-
+        $(document).ready(function () {
+            document.getElementById("navbar-username").innerText = USERNAME;
+        });
     </script>
 </head>
