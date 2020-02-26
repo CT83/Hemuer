@@ -29,6 +29,7 @@
 <script>
     let forwardTimes = []
     let withBoxes = true
+    var topExpression;
 
     function onChangeHideBoundingBoxes(e) {
         withBoxes = !$(e.target).prop('checked')
@@ -66,6 +67,26 @@
                 faceapi.draw.drawDetections(canvas, resizedResult)
             }
             faceapi.draw.drawFaceExpressions(canvas, resizedResult, minConfidence)
+
+            var expressions = {}
+
+
+            Object.keys(resizedResult['expressions']).forEach(function (key, index) {
+                // key: the name of the object key
+                // index: the ordinal position of the key within the object 
+                console.log(key)
+                var expConf = resizedResult['expressions'][key];
+                var exp = key;
+
+                if (expConf > 0 && expConf < 1.1) {
+                    expressions[exp] = expConf;
+                }
+
+                if (expConf > 0.85 && exp != 'neutral') {
+                    topExpression = exp;
+                }
+
+            });
         }
 
         setTimeout(() => onPlay())

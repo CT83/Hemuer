@@ -21,25 +21,22 @@
 
         .scrollit {
             height: 100%;
+            padding-top: 480px;
             overflow-y: scroll;
         }
     </style>
 
     <section class="container-fluid">
         <div class="row vh-100">
-            <div class="col-9 my-auto outer">
+            <div class="col-lg-9 col-sm-6 my-auto outer">
                 <div style="flex-grow : 1;">
                     <%- include('../views/video_frame.ejs')%>
                 </div>
             </div>
-            <div class="col-3 my-auto bg-secondary outer">
+            <div class="col-lg-3 col-sm-6 my-auto bg-secondary outer">
                 <div style="flex-grow : 1;" class="fixed">
                     <div id="scroll-pane" class="scrollit">
                         <ul id="message-history">
-                            <li>
-                                This is samepl
-                            </li>
-
                         </ul>
                     </div>
                 </div>
@@ -48,25 +45,23 @@
 
         <div class="webcam-pane">
             <%- include('../views/expression_detector.ejs')%>
-
         </div>
     </section>
 
-
     <script>
-        $(document).ready(function () {
-            function addMessageBubble(username, message, time) {
-                $("#message-history").append('<li>' + username + " " + message + '</li>');
+        var prevPred;
+        time_update_interval = setInterval(function () {
+            if (topExpression !== null && prevPred != topExpression) {
+                addMessageBubble("", USERNAME + " was " + topExpression, 213.21321);
+                prevPred = topExpression;
             }
-            time_update_interval = setInterval(function () {
-                addMessageBubble("rohit", "This is some sample text", 213.21321);
-            }, 1000)
-            // time_update_interval = setInterval(function () {
-            //     document.getElementById('scroll-pane').scrollTop = 100000000000;
-            // }, 900)
-
-        });
-
+        }, 1000)
+        setInterval(function () {
+            document.getElementById('scroll-pane').scrollTop = 100000000000;
+        }, 900)
+        setInterval(function () {
+            prevPred = null;
+        }, 6000)
     </script>
 
     <%- include('../views/partials/footer.ejs')%>
