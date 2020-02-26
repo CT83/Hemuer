@@ -16,7 +16,7 @@ router.get('/view', function (req, res, next) {
 router.post('/register-smile', function (req, res, next) {
   // Validate request
   console.log(req.body)
-  if (!req.body.time || !req.body.video_url || !req.body.intensity) {
+  if (!req.body.time || !req.body.video_url || !req.body.username || !req.body.expression) {
     return res.status(400).send({
       message: "Request Validation Failed! Some fields are empty!"
     });
@@ -26,7 +26,8 @@ router.post('/register-smile', function (req, res, next) {
   const smile = new Smile({
     time: req.body.time,
     video_url: req.body.video_url,
-    intensity: req.body.intensity
+    username: req.body.username,
+    expression: req.body.expression,
   });
 
   // Save Survey in the database

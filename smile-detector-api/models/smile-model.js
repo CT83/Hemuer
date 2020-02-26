@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const SmileSchema = mongoose.Schema({
     time: Number,
     video_url: String,
-    intensity: Number,
+    username: String,
+    expression: String,
 }, {
     timestamps: true
 });
