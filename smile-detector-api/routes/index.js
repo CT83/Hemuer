@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const Smile = require('../models/smile-model')
+const Smile = require('../models/smile-model');
+var mq = require("../mq_utils");
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -44,6 +45,13 @@ router.post('/register-smile', function (req, res, next) {
 
 // Add smile to rabbitmq
 router.post('/add-smile-to-queue', function (req, res, next) {
+  message = {
+    time: req.body.time,
+    video_url: req.body.video_url,
+    username: req.body.username,
+    expression: req.body.expression,
+  }
+  mq.publishToQueue(message)
   res.send({ message: 'Smile Registered' });
 });
 
