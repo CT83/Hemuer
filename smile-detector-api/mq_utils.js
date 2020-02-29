@@ -1,9 +1,16 @@
 var amqp = require('amqplib');
 
+var amqUrl = "amqp://xcweyitd:WZroDK9OzZ2Kih9qgOVbZ_hydHKwPFGq@salamander.rmq.cloudamqp.com/xcweyitd";
+var connection = null
+
+async function start() {
+    connection = await amqp.connect(amqUrl)
+    console.log("AMQP Connection Opened!")
+}
+
 async function publishToQueue(message) {
     try {
-        var amqUrl = "amqp://xcweyitd:WZroDK9OzZ2Kih9qgOVbZ_hydHKwPFGq@salamander.rmq.cloudamqp.com/xcweyitd";
-        const connection = await amqp.connect(amqUrl)
+        console.log(connection)
         const channel = await connection.createChannel();
         const result = await channel.assertQueue("jobs");
         channel.sendToQueue("jobs", Buffer.from(JSON.stringify(message)))
@@ -15,3 +22,4 @@ async function publishToQueue(message) {
 }
 
 exports.publishToQueue = publishToQueue;
+exports.start = start;

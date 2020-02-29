@@ -35,6 +35,8 @@ mongoose.connect(dbConfig.url, {
   process.exit();
 });
 
+var mq = require("./mq_utils");
+mq.start();
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
