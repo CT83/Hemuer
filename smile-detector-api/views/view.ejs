@@ -26,7 +26,7 @@
         }
     </style>
 
-    <section class="container-fluid">
+    <section id="main-container" class="container-fluid">
         <div class="row vh-100">
             <div class="col-lg-9 col-sm-6 my-auto outer">
                 <div style="flex-grow : 1;">
@@ -58,6 +58,7 @@
                     var username = USERNAME;
                     addMessageBubble("", "You were " + expression, time);
                     addExpressionToQueue(time, "", username, expression)
+                    slowShake()
                 }
                 prevPred = topExpression;
             }
@@ -89,6 +90,8 @@
             });
         }, 2000)
     </script>
+
+    <%- include('../views/effects.ejs')%>
 
     <%- include('../views/partials/footer.ejs')%>
 

@@ -1,0 +1,10 @@
+<link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake-slow.min.css">
+
+<script>
+    function slowShake() {
+        $("#main-container").addClass("shake-slow").addClass("shake-constant")
+        setTimeout(function () {
+            $("#main-container").removeClass("shake-slow").removeClass("shake-constant");
+        }, 3000);
+    }
+</script>
