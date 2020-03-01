@@ -35,7 +35,20 @@ exports.findAll = (req, res) => {
     Smile.find()
         .then(smiles => {
             console.log("Fetched Smiles:" + smiles);
-            res.send(smiles);
+            res.send({ smiles });
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving data."
+            });
+        });
+
+};
+
+// Returns the recent most 5 smiles
+exports.recent = (req, res) => {
+    Smile.find()
+        .then(smiles => {
+            res.send({ smiles });
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving data."
@@ -55,7 +68,7 @@ exports.saveSmile = (input) => {
     // Save Survey in the database
     smile.save()
         .then(data => {
-            console.log(`Saved ${data} Successfully!`)
+            console.log(`Saved ${data._id} Successfully!`)
         }).catch(err => {
             console.log(err.message)
         });

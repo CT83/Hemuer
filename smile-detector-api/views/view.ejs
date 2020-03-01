@@ -52,7 +52,13 @@
         var prevPred;
         time_update_interval = setInterval(function () {
             if (topExpression !== null && prevPred != topExpression) {
-                addMessageBubble("", USERNAME + " was " + topExpression, player.getCurrentTime());
+                if (topExpression != 'neutral') {
+                    var time = player.getCurrentTime();
+                    var expression = topExpression;
+                    var username = USERNAME;
+                    addMessageBubble("", You + " were " + expression, time);
+                    addExpressionToQueue(time, "", username, expression)
+                }
                 prevPred = topExpression;
             }
         }, 1000)
@@ -62,6 +68,23 @@
         setInterval(function () {
             prevPred = null;
         }, 6000)
+
+        function addExpressionToQueue(time, video_url, username, expression) {
+            $.post("/add-expression", { time, video_url, username, expression });
+        }
+
+
+        var addedIds = [];
+
+        // Add users except You to side pane, add ids not added
+        setInterval(function properAddToSidePane() {
+            $.getJSON("/recent-expressions", function (result) {
+                $.each(result['smiles'], function (i, field) {
+                    console.log(i + field._id)
+                    addedIds.push(_id)
+                });
+            });
+        }, 2000)
     </script>
 
     <%- include('../views/partials/footer.ejs')%>

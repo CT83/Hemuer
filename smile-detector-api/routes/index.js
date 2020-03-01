@@ -5,7 +5,7 @@ var mq = require("../mq_utils");
 var controller = require("../controllers/smile-controller")
 
 // Add smile to rabbitmq
-router.post('/add-smile-to-queue', function (req, res, next) {
+router.post('/add-expression', function (req, res, next) {
   message = {
     time: req.body.time,
     video_url: req.body.video_url,
@@ -17,6 +17,8 @@ router.post('/add-smile-to-queue', function (req, res, next) {
 });
 
 router.get('/all-smiles', controller.findAll);
+
+router.get('/recent-expressions', controller.recent);
 
 
 /* GET home page. */
