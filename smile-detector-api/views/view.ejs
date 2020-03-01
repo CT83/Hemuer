@@ -52,7 +52,7 @@
         var prevPred;
         time_update_interval = setInterval(function () {
             if (topExpression !== null && prevPred != topExpression) {
-                if (topExpression != 'neutral') {
+                if (topExpression != 'neutral' && topExpression != 'angry') {
                     var time = player.getCurrentTime();
                     var expression = topExpression;
                     var username = USERNAME;
