@@ -36,8 +36,9 @@ mongoose.connect(dbConfig.url, {
 });
 
 var mq = require("./mq_utils");
+var contr = require("./controllers/smile-controller")
 mq.start().then((conn) => {
-  mq.consumeFromQueue();
+  mq.listenOnQueue(contr.saveSmile);
 });
 
 app.use('/', indexRouter);

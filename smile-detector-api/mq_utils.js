@@ -27,14 +27,14 @@ async function publishToQueue(message) {
     }
 }
 
-async function consumeFromQueue() {
+async function listenOnQueue(callbackFunc) {
     try {
         const channel = await connection.createChannel();
         const result = await channel.assertQueue("jobs");
 
         channel.consume("jobs", message => {
             const input = JSON.parse(message.content.toString());
-            console.log(`Recieved job with input ${message.content}`)
+            callbackFunc(input)
             channel.ack(message);
         })
         console.log("Waiting for messages...")
@@ -45,5 +45,5 @@ async function consumeFromQueue() {
 }
 
 exports.publishToQueue = publishToQueue;
-exports.consumeFromQueue = consumeFromQueue;
+exports.listenOnQueue = listenOnQueue;
 exports.start = start;
