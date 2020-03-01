@@ -56,7 +56,7 @@
                     var time = player.getCurrentTime();
                     var expression = topExpression;
                     var username = USERNAME;
-                    addMessageBubble("", You + " were " + expression, time);
+                    addMessageBubble("", "You were " + expression, time);
                     addExpressionToQueue(time, "", username, expression)
                 }
                 prevPred = topExpression;
@@ -80,8 +80,11 @@
         setInterval(function properAddToSidePane() {
             $.getJSON("/recent-expressions", function (result) {
                 $.each(result['smiles'], function (i, field) {
-                    console.log(i + field._id)
-                    addedIds.push(_id)
+                    if (!addedIds.includes(field._id) && field.username != USERNAME) {
+                        addedIds.push(field._id)
+                        addMessageBubble(field.username, field.username + " was " + field.expression, field.time)
+                    }
+
                 });
             });
         }, 2000)
