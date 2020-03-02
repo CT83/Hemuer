@@ -17,6 +17,7 @@
 
         .msg-link {
             color: blue;
+            text-decoration-color: blue;
         }
     </style>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -50,8 +51,9 @@
         }
 
         function addMessageBubble(username, message, time) {
-            time = Math.round(time);
-            $("#message-history").append('<li>' + message + ' at <p onclick="seekTo(' + time + ')" class="msg-link">' + time + '</a> </li>');
+            time = Math.round(time)
+            var timeF = new Date(time * 1000).toISOString().substr(11, 8);
+            $("#message-history").append('<li>' + message + ' at <a onclick="seekTo(' + time + ')" class="text-info">' + timeF + '</a> </li>');
         }
         $(document).ready(function () {
             document.getElementById("navbar-username").innerText = USERNAME;
