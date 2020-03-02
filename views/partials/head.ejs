@@ -43,7 +43,11 @@
             return name;
         }
 
-        var USERNAME = generateName()
+        var USERNAME = localStorage.getItem("username");
+        if (USERNAME == null) {
+            USERNAME = prompt("Please enter your name!", generateName());
+            localStorage.setItem('username', USERNAME)
+        }
 
         function addMessageBubble(username, message, time) {
             time = Math.round(time);
