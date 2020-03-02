@@ -58,7 +58,8 @@
                     var username = USERNAME;
                     addMessageBubble("", "You were " + expression, time);
                     addExpressionToQueue(time, "", username, expression)
-                    slowShake()
+                    if (topExpression == 'happy'){
+                        slowShake()}
                 }
                 prevPred = topExpression;
             }
