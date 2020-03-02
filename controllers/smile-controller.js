@@ -46,7 +46,7 @@ exports.findAll = (req, res) => {
 
 // Returns the recent most 25 smiles
 exports.recent = (req, res) => {
-    Smile.find().sort({ $natural: -1 }).limit(5)
+    Smile.find().sort({ $natural: -1 }).limit(25)
         .then(smiles => {
             smiles = smiles.reverse();
             res.send({ smiles });
