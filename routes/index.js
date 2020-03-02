@@ -23,11 +23,6 @@ router.get('/recent-expressions', controller.recent);
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-/* GET home page. */
-router.get('/view', function (req, res, next) {
   res.render('view', { title: 'Express' });
 });
 
