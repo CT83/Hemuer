@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Smile = require('../models/smile-model');
 var mq = require("../mq_utils");
 var controller = require("../controllers/smile-controller")
 
@@ -20,13 +19,29 @@ router.get('/all-smiles', controller.findAll);
 
 router.get('/recent-expressions', controller.recent);
 
+// Add message to queue
+router.post('/messages', function (req, res, next) {
+  message = {
+    username: req.body.username,
+    message: req.body.message,
+  }
+  mq.publishMessageToQueue(message)
+  res.send({ message: 'Message Sent!' });
+});
+
+// Add message to queue
+router.get('/messages', function (req, res, next) {
+  console.log(mq.MESSAGES)
+  res.send({ messages: mq.MESSAGES });
+});
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('view', { title: 'Express' });
 });
 
-/* GET home page. */
+/* GET temp page. */
 router.get('/temp', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });

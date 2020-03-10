@@ -39,7 +39,17 @@ var mq = require("./mq_utils");
 var contr = require("./controllers/smile-controller")
 mq.start().then((conn) => {
   mq.listenOnQueue(contr.saveSmile);
+  mq.listenOnMessagesQueue();
+  
 });
+
+setInterval(function () {
+  if (mq.MESSAGES.length > 100) {
+    console.log("Clearing first 50 messages...")
+    mq.MESSAGES = mq.MESSAGES.slice(50)
+  }
+}, 300000);
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
