@@ -32,13 +32,16 @@
 
     <script>
         var prevPred;
+        var mute = true;
+        setTimeout(function () { mute = false }, 4000); //mute msg pop sounds for first 2 seconds
+
         time_update_interval = setInterval(function () {
             if (topExpression !== null && prevPred != topExpression) {
                 if (topExpression != 'neutral' && topExpression != 'angry') {
                     var time = player.getCurrentTime();
                     var expression = topExpression;
                     var username = USERNAME;
-                    addMessageBubble(USERNAME, "You were " + expression, time, you = true);
+                    addMessageBubble("You", "I was " + expression, time, you = true);
                     addExpressionToQueue(time, "", username, expression)
                     if (topExpression == 'happy') {
                         slowShake()
@@ -60,23 +63,21 @@
 
 
         var addedIds = [];
-        var firstRun = true;
         // Add users except You to side pane, add ids not added
         setInterval(function properAddToSidePane() {
             $.getJSON("/recent-expressions", function (result) {
                 $.each(result['smiles'], function (i, field) {
                     if (!addedIds.includes(field._id) && field.username != USERNAME) {
                         addedIds.push(field._id)
-                        addMessageBubble(field.username, field.username + " was " + field.expression, field.time, play_sound = !firstRun)
+                        addMessageBubble(field.username, "I was " + field.expression, field.time, you = false, play_sound = mute)
                     }
-                    firstRun = false;
                 });
             });
         }, 2000)
     </script>
 
     <%- include('../views/effects.ejs')%>
-
+    <%- include('../views/utils.ejs')%>
     <%- include('../views/partials/footer.ejs')%>
 
 </body>

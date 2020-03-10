@@ -47,7 +47,10 @@
 
         var USERNAME = localStorage.getItem("username");
         if (USERNAME == null) {
-            USERNAME = prompt("Please enter your name!", generateName());
+            genName = generateName()
+            do {
+                USERNAME = prompt("Please enter your name!", genName);
+            } while (USERNAME == null || USERNAME == "");
             localStorage.setItem('username', USERNAME)
         }
 
@@ -55,8 +58,9 @@
             time = Math.round(time)
             var timeF = new Date(time * 1000).toISOString().substr(11, 8);
 
-            if (you == true) { 
-                new Audio("./sounds/you.wav").play() }
+            if (you == true) {
+                new Audio("./sounds/you.wav").play()
+            }
             else {
                 new Audio("./sounds/him.wav").play()
             }

@@ -37,7 +37,7 @@
     }
 
     #msg-box>.chatbox {
-        position: relative;
+        position: absolute;
         display: table;
         float: left;
         width: 20rem;
@@ -88,7 +88,7 @@
         border-radius: 1rem;
         margin-bottom: 0.5rem;
         word-break: break-all;
-        text-transform: capitalize;
+        /* text-transform: capitalize; */
     }
 
     .msg.him {
@@ -241,7 +241,7 @@
 
         function newMsgRender(data) {
             $('#msg-box .chats ul>li.pending').remove();
-            (data.you === true) ? _cl = 'you' : _cl = 'him';
+            (data.you == true) ? _cl = 'you' : _cl = 'him';
             if (data.seek_time != null)
                 var seekText = ' at <a onclick="seekTo(' + data.seek_time + ')" class="text-info">' + data.fSeek_time + '</a>'
             $('#msg-list')
