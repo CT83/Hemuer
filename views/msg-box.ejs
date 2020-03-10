@@ -1,0 +1,304 @@
+<style>
+    /* CUSTOM SCROLLBAR FOR CHATBOX */
+    .chats::-webkit-scrollbar {
+        width: 0.125rem;
+    }
+
+    .chats::-webkit-scrollbar-thumb {
+        background: #CFD8DC;
+    }
+
+    .chats::-webkit-scrollbar-thumb:hover {
+        background: #B0BEC5;
+    }
+
+    /* INPUT TEXT PLACEHOLDER CUSTOMIZE */
+    ::-webkit-input-placeholder {
+        color: #B0BEC5;
+    }
+
+    ::-moz-placeholder {
+        color: #B0BEC5;
+    }
+
+    :-ms-input-placeholder {
+        color: #B0BEC5;
+    }
+
+    :-moz-placeholder {
+        color: #B0BEC5;
+    }
+
+    #msg-box {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #msg-box>.chatbox {
+        position: relative;
+        display: table;
+        float: left;
+        width: 20rem;
+        background-color: white;
+        box-shadow: 0 0.25rem 2rem rgba(38, 50, 56, 0.1);
+        overflow: hidden;
+    }
+
+    #msg-box>.chatbox>.chats {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: table-cell;
+        vertical-align: bottom;
+        padding: 1rem;
+        margin-bottom: 2.875rem;
+        overflow: auto;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    .msg-box ul>li {
+        position: relative;
+        list-style: none;
+        display: block;
+        margin-top: 1.5rem;
+        margin: 1rem 0;
+        transition: 0.5s all;
+    }
+
+    ul>li:after {
+        display: table;
+        content: '';
+        clear: both;
+    }
+
+    .msg {
+        max-width: 85%;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        line-height: 1rem;
+        min-height: 2rem;
+        font-size: 0.875rem;
+        border-radius: 1rem;
+        margin-bottom: 0.5rem;
+        word-break: break-all;
+        text-transform: capitalize;
+    }
+
+    .msg.him {
+        float: left;
+        background-color: #E91E63;
+        color: #fff;
+        border-bottom-left-radius: 0.125rem;
+    }
+
+    .msg.you {
+        float: right;
+        background-color: #ECEFF1;
+        color: #607D8B;
+        border-bottom-right-radius: 0.125rem;
+    }
+
+    .msg.load {
+        background-color: #F8BBD0;
+        border-bottom-left-radius: 0.125rem;
+    }
+
+    .msg>span {
+        font-weight: 500;
+        position: absolute;
+    }
+
+    .msg>span.partner {
+        color: #B0BEC5;
+        font-size: 0.5rem;
+        top: 0;
+        font-size: 0.675rem;
+        margin-top: -1rem;
+    }
+
+    .msg>span.time {
+        color: #CFD8DC;
+        font-size: 0.5rem;
+        bottom: -0.35rem;
+        display: none;
+    }
+
+    .msg:hover span.time {
+        display: block;
+    }
+
+    .msg.him>span {
+        left: 0;
+    }
+
+    .msg.you>span {
+        right: 0;
+    }
+
+    .sendBox {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+    }
+
+    .sendBox input {
+        font-family: 'Lato', sans-serif;
+        font-size: 0.875rem;
+        display: block;
+        width: 100%;
+        border: none;
+        padding: 0.75rem 0.75rem;
+        line-height: 1.25rem;
+        border-top: 0.125rem solid #ECEFF1;
+        transition: 0.5s ease-in-out;
+    }
+
+    input:hover,
+    input:focus,
+    input:active {
+        outline: none !important;
+        border-top: 0.125rem solid #E91E63;
+    }
+
+    /*  LOADING MESSAGE CSS */
+    .load .dot {
+        display: inline-block;
+        width: 0.375rem;
+        height: 0.375rem;
+        border-radius: 0.25rem;
+        margin-right: 0.125rem;
+        background-color: rgba(255, 255, 255, 0.75);
+    }
+
+    .load .dot:nth-last-child(1) {
+        animation: loadAnim 1s .2s linear infinite;
+    }
+
+    .load .dot:nth-last-child(2) {
+        animation: loadAnim 1s .4s linear infinite;
+    }
+
+    .load .dot:nth-last-child(3) {
+        animation: loadAnim 1s .6s linear infinite;
+    }
+
+    @keyframes loadAnim {
+        0 {
+            transform: translate(0, 0);
+        }
+
+        25% {
+            transform: translate(0, -0.25rem);
+        }
+
+        50% {
+            transform: translate(0, 0);
+        }
+    }
+</style>
+
+
+<div id="msg-box" class="msg-box">
+
+
+    <div class="chatbox outer" style="width:100%;" id="' + userID + '">
+        <div id="scroll-pane" class="chats">
+            <ul id="msg-list" style="margin-top: 600px;"></ul>
+        </div>
+        <div class="sendBox">
+            <div class="row">
+                <div class="col-sm-10">
+                    <input type="text" placeholder="Enter a message">
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-send"></i></button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        // You can add Users inside JSON users section
+        init();
+        function init() {
+            renderData();
+        };
+
+        // RENDER METHODS
+        function renderData() {
+        }
+
+        function newMsgRender(data) {
+            $('#msg-box .chats ul>li.pending').remove();
+            $('#msg-list')
+                .append('<li><div class="msg him' + '">' +
+                    '<span class="partner">' + data.from + '</span>' +
+                    data.msg +
+                    // '<span class="time">' + getDateTime(data.time) + '</span>' +
+                    '<span class="time">' + data.time + '</span>' +
+                    '</div>' +
+                    '</li>');
+        }
+
+        // HELPER FUNCTION
+        function getDateTime(t) {
+            var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var d = new Date(t / 1000),
+                month = (month[d.getMonth()]),
+                day = d.getDate().toString(),
+                hour = d.getHours().toString(),
+                min = d.getMinutes().toString();
+            (day.length < 2) ? day = '0' + day : '';
+            (hour.length < 2) ? hour = '0' + hour : '';
+            (min.length < 2) ? min = '0' + min : '';
+            var res = '' + month + ' ' + day + ' ' + hour + ':' + min;
+            return res;
+        }
+
+        // KEYPRESS EVENTS HANDLER
+        $('#msg-box .sendBox>input').keypress(function (e) {
+            var _id = $(this).closest('.chatbox').attr('id');
+            pendingRender(_id);
+            if (e.which == 13) {
+                var msgFrom;
+                _json.users.forEach(function (user) {
+                    if (user.replace(/ /g, "_") === _id)
+                        msgFrom = user;
+                });
+                var msg = $('#' + _id + ' .sendBox>input').val();
+                msg = msg.replace(/\"/g, '\\"');
+                var t = $.now();
+                $('#' + _id + ' .sendBox>input').val('');
+                if (msg.replace(/\s/g, '') !== '') {
+                    var temp = {
+                        from: msgFrom,
+                        msg: msg,
+                        time: t.toString(),
+                        action: ''
+                    }
+                    _json.chats.push(temp);
+                    console.log(_json);
+                    newMsgRender(temp);
+                } else {
+                    $('#msg-box .chats ul>li.pending').remove();
+                }
+            }
+        });
+
+        // EVENT HANDLER
+        $('#msg-box .sendBox>input').focusout(function () {
+            $('#msg-box .chats ul>li.pending').remove();
+        });
+
+    </script>

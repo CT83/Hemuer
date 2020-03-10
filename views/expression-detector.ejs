@@ -48,11 +48,6 @@
         ]).then(startVideo)
 
         function startVideo() {
-            // navigator.mediaDevices.getUserMedia(
-            //     { video: true  },
-            //     stream => video.srcObject = stream,
-            //     err => console.error(err)
-            // )
             var constraints = { video: true, audio: true };
 
             navigator.mediaDevices.getUserMedia(constraints)

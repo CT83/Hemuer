@@ -33,18 +33,19 @@
 
     <section id="main-container" class="container-fluid">
         <div class="row vh-100">
-            <div class="col-lg-9 col-md-9 col-sm-8 my-auto outer">
+            <div class="col-lg-9 col-md-9 col-sm-8 my-auto outer" style="padding:5px">
                 <div style="flex-grow : 1;">
                     <%- include('../views/video_frame.ejs')%>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-4 my-auto bg-secondary outer">
-                <div style="flex-grow : 1;" class="fixed">
-                    <div id="scroll-pane" class="scrollit">
-                        <ul id="message-history">
-                        </ul>
-                    </div>
-                </div>
+            <div class="col-lg-3 col-md-3 col-sm-4 my-auto bg-white outer" style="padding:5px">
+                <!-- <div style="flex-grow : 1;" class="fixed"> -->
+                <!-- <div id="scroll-pane" class="scrollit"> -->
+                <%- include('../views/msg-box.ejs')%>
+                <!-- <ul id="message-history" style="display: none;">
+                        </ul> -->
+                <!-- </div> -->
+                <!-- </div> -->
             </div>
         </div>
 
@@ -91,6 +92,8 @@
                     if (!addedIds.includes(field._id) && field.username != USERNAME) {
                         addedIds.push(field._id)
                         addMessageBubble(field.username, field.username + " was " + field.expression, field.time)
+
+                        
                     }
 
                 });

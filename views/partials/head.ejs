@@ -27,6 +27,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="./javascripts/hello-kiddie.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script>
         function capFirst(string) {
@@ -54,7 +55,9 @@
             time = Math.round(time)
             var timeF = new Date(time * 1000).toISOString().substr(11, 8);
             $("#message-history").append('<li>' + message + ' at <a onclick="seekTo(' + time + ')" class="text-info">' + timeF + '</a> </li>');
+            newMsgRender({ from: username, msg: message, time: time })
         }
+
         $(document).ready(function () {
             document.getElementById("navbar-username").innerText = USERNAME;
         });
