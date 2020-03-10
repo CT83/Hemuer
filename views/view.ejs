@@ -34,6 +34,7 @@
         var prevPred;
         var mute = true;
         setTimeout(function () { mute = false }, 4000); //mute msg pop sounds for first 2 seconds
+        setTimeout(function () { document.getElementById('scroll-pane').scrollTop = 100000000000; }, 4000); //mute msg pop sounds for first 2 seconds
 
         time_update_interval = setInterval(function () {
             if (topExpression !== null && prevPred != topExpression) {
@@ -52,7 +53,7 @@
         }, 1000)
         setInterval(function () {
             document.getElementById('scroll-pane').scrollTop = 100000000000;
-        }, 900)
+        }, 7000)
         setInterval(function () {
             prevPred = null;
         }, 6000)
