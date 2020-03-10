@@ -14,7 +14,6 @@
 
 
         .fixed {
-            padding-top: 25px;
             height: 100%;
             overflow: hidden;
         }
@@ -24,16 +23,22 @@
             padding-top: 480px;
             overflow-y: scroll;
         }
+
+        .webcam-pane {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
     </style>
 
     <section id="main-container" class="container-fluid">
         <div class="row vh-100">
-            <div class="col-lg-9 col-sm-6 my-auto outer">
+            <div class="col-lg-9 col-md-9 col-sm-8 my-auto outer">
                 <div style="flex-grow : 1;">
                     <%- include('../views/video_frame.ejs')%>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 my-auto bg-secondary outer">
+            <div class="col-lg-3 col-md-3 col-sm-4 my-auto bg-secondary outer">
                 <div style="flex-grow : 1;" class="fixed">
                     <div id="scroll-pane" class="scrollit">
                         <ul id="message-history">
@@ -44,7 +49,7 @@
         </div>
 
         <div class="webcam-pane">
-            <%- include('../views/expression_detector.ejs')%>
+            <%- include('../views/expression-detector.ejs')%>
         </div>
     </section>
 
@@ -58,8 +63,9 @@
                     var username = USERNAME;
                     addMessageBubble("", "You were " + expression, time);
                     addExpressionToQueue(time, "", username, expression)
-                    if (topExpression == 'happy'){
-                        slowShake()}
+                    if (topExpression == 'happy') {
+                        slowShake()
+                    }
                 }
                 prevPred = topExpression;
             }

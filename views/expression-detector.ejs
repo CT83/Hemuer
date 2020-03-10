@@ -1,0 +1,98 @@
+<script src="./javascripts/face-api.min.js"></script>
+<script src="https://webrtchacks.github.io/adapter/adapter-latest.js"></script>
+
+<style>
+    /* body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } */
+
+    canvas {
+        position: absolute;
+        top: 0;
+        right: 0;
+        max-width: 75vh;
+    }
+
+    video {
+        position: absolute;
+        top: 0;
+        right: 0;
+        max-width: 75vh;
+    }
+
+</style>
+
+<div id="video-pane" class="video-pane">
+    <video id="video" autoplay muted></video>
+</div>
+
+<script>
+    var topExpression;
+
+    $(document).ready(function () {
+        const video = document.getElementById('video')
+
+        const video_pane = document.getElementById('video-pane')
+
+        Promise.all([
+            faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
+            faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
+            faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
+            faceapi.nets.faceExpressionNet.loadFromUri('./models')
+        ]).then(startVideo)
+
+        function startVideo() {
+            // navigator.mediaDevices.getUserMedia(
+            //     { video: true  },
+            //     stream => video.srcObject = stream,
+            //     err => console.error(err)
+            // )
+            var constraints = { video: true, audio: true };
+
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(stream => video.srcObject = stream)
+                .catch(e => console.error(e));
+        }
+
+        video.addEventListener('play', () => {
+            const canvas = faceapi.createCanvasFromMedia(video)
+            video_pane.appendChild(canvas)
+            const displaySize = { width: video.videoWidth, height: video.videoHeight }
+            faceapi.matchDimensions(canvas, displaySize)
+            setInterval(async () => {
+                const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+                const resizedDetections = faceapi.resizeResults(detections, displaySize)
+                canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+                faceapi.draw.drawDetections(canvas, resizedDetections)
+                faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+                faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+                var expressions = {}
+
+                if (resizedDetections.length > 0) {
+                    var det = resizedDetections[0];
+                    Object.keys(det['expressions']).forEach(function (key, index) {
+                        // key: the name of the object key
+                        // index: the ordinal position of the key within the object 
+                        var expConf = det['expressions'][key];
+                        var exp = key;
+
+                        if (expConf > 0 && expConf < 1.1) {
+                            expressions[exp] = expConf;
+                        }
+
+                        if (expConf > 0.85) {
+                            topExpression = exp;
+                        }
+                    });
+                }
+            }, 100)
+        })
+
+    });
+</script>
