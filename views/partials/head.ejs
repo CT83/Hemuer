@@ -51,11 +51,11 @@
             localStorage.setItem('username', USERNAME)
         }
 
-        function addMessageBubble(username, message, time) {
+        function addMessageBubble(username, message, time, you = false, play_sound=true) {
             time = Math.round(time)
             var timeF = new Date(time * 1000).toISOString().substr(11, 8);
             $("#message-history").append('<li>' + message + ' at <a onclick="seekTo(' + time + ')" class="text-info">' + timeF + '</a> </li>');
-            newMsgRender({ from: username, msg: message, time: time })
+            newMsgRender({ from: username, msg: message, time: time, you: you, seek_time: time, fSeek_time: timeF })
         }
 
         $(document).ready(function () {

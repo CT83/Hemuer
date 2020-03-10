@@ -39,7 +39,7 @@
                     var time = player.getCurrentTime();
                     var expression = topExpression;
                     var username = USERNAME;
-                    addMessageBubble("", "You were " + expression, time);
+                    addMessageBubble(USERNAME, "You were " + expression, time, you=true);
                     addExpressionToQueue(time, "", username, expression)
                     if (topExpression == 'happy') {
                         slowShake()
@@ -69,8 +69,6 @@
                     if (!addedIds.includes(field._id) && field.username != USERNAME) {
                         addedIds.push(field._id)
                         addMessageBubble(field.username, field.username + " was " + field.expression, field.time)
-
-
                     }
 
                 });

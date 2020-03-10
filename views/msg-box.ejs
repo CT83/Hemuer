@@ -241,11 +241,13 @@
 
         function newMsgRender(data) {
             $('#msg-box .chats ul>li.pending').remove();
+            (data.you === true) ? _cl = 'you' : _cl = 'him';
+            if (data.seek_time != null)
+                var seekText = ' at <a onclick="seekTo(' + data.seek_time + ')" class="text-info">' + data.fSeek_time + '</a>'
             $('#msg-list')
-                .append('<li><div class="msg him' + '">' +
-                    '<span class="partner">' + data.from + '</span>' +
+                .append('<li><div class="msg ' + _cl + '">' +
+                    '<span class="partner">' + data.from + seekText + '</span>' +
                     data.msg +
-                    // '<span class="time">' + getDateTime(data.time) + '</span>' +
                     '<span class="time">' + data.time + '</span>' +
                     '</div>' +
                     '</li>');

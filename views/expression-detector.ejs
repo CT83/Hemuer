@@ -2,16 +2,6 @@
 <script src="https://webrtchacks.github.io/adapter/adapter-latest.js"></script>
 
 <style>
-    /* body {
-        margin: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    } */
-
     canvas {
         position: absolute;
         top: 0;
@@ -48,7 +38,7 @@
         ]).then(startVideo)
 
         function startVideo() {
-            var constraints = { video: true, audio: true };
+            var constraints = { video: true,};
 
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(stream => video.srcObject = stream)
@@ -72,8 +62,6 @@
                 if (resizedDetections.length > 0) {
                     var det = resizedDetections[0];
                     Object.keys(det['expressions']).forEach(function (key, index) {
-                        // key: the name of the object key
-                        // index: the ordinal position of the key within the object 
                         var expConf = det['expressions'][key];
                         var exp = key;
 
