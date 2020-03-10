@@ -11,7 +11,6 @@
             flex-flow: column;
             height: 100%;
         }
-
     </style>
 
     <section id="main-container" class="container-fluid">
@@ -39,7 +38,7 @@
                     var time = player.getCurrentTime();
                     var expression = topExpression;
                     var username = USERNAME;
-                    addMessageBubble(USERNAME, "You were " + expression, time, you=true);
+                    addMessageBubble(USERNAME, "You were " + expression, time, you = true);
                     addExpressionToQueue(time, "", username, expression)
                     if (topExpression == 'happy') {
                         slowShake()
@@ -61,16 +60,16 @@
 
 
         var addedIds = [];
-
+        var firstRun = true;
         // Add users except You to side pane, add ids not added
         setInterval(function properAddToSidePane() {
             $.getJSON("/recent-expressions", function (result) {
                 $.each(result['smiles'], function (i, field) {
                     if (!addedIds.includes(field._id) && field.username != USERNAME) {
                         addedIds.push(field._id)
-                        addMessageBubble(field.username, field.username + " was " + field.expression, field.time)
+                        addMessageBubble(field.username, field.username + " was " + field.expression, field.time, play_sound = !firstRun)
                     }
-
+                    firstRun = false;
                 });
             });
         }, 2000)

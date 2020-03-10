@@ -51,10 +51,16 @@
             localStorage.setItem('username', USERNAME)
         }
 
-        function addMessageBubble(username, message, time, you = false, play_sound=true) {
+        function addMessageBubble(username, message, time, you = false, play_sound = true) {
             time = Math.round(time)
             var timeF = new Date(time * 1000).toISOString().substr(11, 8);
-            $("#message-history").append('<li>' + message + ' at <a onclick="seekTo(' + time + ')" class="text-info">' + timeF + '</a> </li>');
+
+            if (you == true) { 
+                new Audio("./sounds/you.wav").play() }
+            else {
+                new Audio("./sounds/him.wav").play()
+            }
+
             newMsgRender({ from: username, msg: message, time: time, you: you, seek_time: time, fSeek_time: timeF })
         }
 
