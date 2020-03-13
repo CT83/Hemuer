@@ -71,7 +71,8 @@ router.get('/reset-messages', function (req, res, next) {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('view', { title: 'Express' });
+  video_id =
+    res.render('view', { title: 'Express', video_id: "fN5nN6NYJFs" });
 });
 
 /* GET temp page. */
