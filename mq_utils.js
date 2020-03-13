@@ -1,6 +1,6 @@
 var amqp = require('amqplib');
 
-var amqUrl = "amqp://xcweyitd:WZroDK9OzZ2Kih9qgOVbZ_hydHKwPFGq@salamander.rmq.cloudamqp.com/xcweyitd";
+var amqUrl = process.env.AMQ_URL || 'amqp://localhost';
 var connection = null
 var channel = null
 var MESSAGES = []

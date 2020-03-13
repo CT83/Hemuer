@@ -3,7 +3,7 @@ var router = express.Router();
 var mq = require("../mq_utils");
 var controller = require("../controllers/smile-controller")
 var Smile = require("../models/smile-model")
-var uuid = require('uuid/v4')
+var uuid = require('uuid/v5')
 
 
 // Add smile to rabbitmq
@@ -50,7 +50,7 @@ router.post('/messages', function (req, res, next) {
     username: req.body.username,
     message: req.body.message,
     sent_time: req.body.sent_time,
-    _id: uuid(),
+    _id: uuid.DNS,
   }
   mq.publishMessageToQueue(message)
   res.send({ message: 'Message Sent!' });

@@ -12,5 +12,10 @@ services:
       - 27017:27017
       - 27019:27019
 
+  rabbitmq:
+    image: rabbitmq:3.8.3
+    ports:
+      - "5672:5672"
+
 volumes:
   data:
