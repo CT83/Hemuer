@@ -324,9 +324,11 @@
             var inputVal = document.getElementById("message-box").value;
             var d = new Date()
             var sent_time = d.getTime();
-            $.post("/messages", {
-                username: USERNAME, message: inputVal, sent_time: sent_time
-            });
+            if (inputVal.length > 0) {
+                $.post("/messages", {
+                    username: USERNAME, message: inputVal, sent_time: sent_time
+                });
+            }
             document.getElementById("message-box").value = "";
         }
 
