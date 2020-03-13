@@ -59,7 +59,9 @@
         }, 6000)
 
         function addExpressionToQueue(time, video_url, username, expression) {
-            $.post("/add-expression", { time, video_url, username, expression });
+            var d = new Date()
+            var sent_time = d.getTime();
+            $.post("/add-expression", { time, video_url, username, expression, sent_time: sent_time });
         }
 
 
@@ -70,7 +72,13 @@
                 $.each(result['smiles'], function (i, field) {
                     if (!addedIds.includes(field._id) && field.username != USERNAME) {
                         addedIds.push(field._id)
-                        addMessageBubble(field.username, "I was " + field.expression, field.time, you = false, play_sound = mute)
+                        field.seek_time = field.time;
+
+                        if (field.expression != null) {
+                            addMessageBubble(field.username, "I was " + field.expression, sent_time = field.sent_time, seek_time = field.seek_time, you = false, play_sound = mute)
+                        } else {
+                            addMessageBubble(field.username, field.message, you = false, sent_time = field.sent_time, play_sound = mute)
+                        }
                     }
                 });
             });

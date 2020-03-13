@@ -54,9 +54,14 @@
             localStorage.setItem('username', USERNAME)
         }
 
-        function addMessageBubble(username, message, time, you = false, play_sound = true) {
-            time = Math.round(time)
-            var timeF = new Date(time * 1000).toISOString().substr(11, 8);
+        function addMessageBubble(username, message, sent_time, seek_time, you = false, play_sound = true) {
+
+            if (seek_time != null) {
+                seek_time = Math.round(seek_time)
+                var fSeek_time = new Date(seek_time * 1000).toISOString().substr(11, 8);
+            } else {
+                seek_time = null
+            }
 
             if (you == true) {
                 new Audio("./sounds/you.wav").play()
@@ -65,7 +70,7 @@
                 new Audio("./sounds/him.wav").play()
             }
 
-            newMsgRender({ from: username, msg: message, time: time, you: you, seek_time: time, fSeek_time: timeF })
+            newMsgRender({ from: username, msg: message, sent_time: sent_time, you: you, seek_time: seek_time, fSeek_time: fSeek_time })
         }
 
         $(document).ready(function () {

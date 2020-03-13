@@ -12,6 +12,7 @@ exports.create = (req, res) => {
 
     // Create a Smile
     const smile = new Smile({
+        sent_time:req.body.sent_time,
         time: req.body.time,
         video_url: req.body.video_url,
         username: req.body.username,

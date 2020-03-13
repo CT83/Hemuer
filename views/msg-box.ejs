@@ -218,10 +218,11 @@
         <div class="sendBox">
             <div class="row">
                 <div class="col-sm-10">
-                    <input type="text" placeholder="Enter a message">
+                    <input id="message-box" type="text" placeholder="Enter a message">
                 </div>
                 <div class="col-sm-2">
-                    <button class="btn btn-primary" type="button"><i class="fa fa-send"></i></button>
+                    <button class="btn btn-primary" onclick="sendMessage()" type="button"><i
+                            class="fa fa-send"></i></button>
                 </div>
             </div>
         </div>
@@ -249,7 +250,7 @@
                 .append('<li><div class="msg ' + _cl + '">' +
                     '<span class="partner">' + data.from + seekText + '</span>' +
                     data.msg +
-                    '<span class="time">' + data.time + '</span>' +
+                    '<span class="time">' + data.sent_time + '</span>' +
                     '</div>' +
                     '</li>');
         }
@@ -298,6 +299,16 @@
                 }
             }
         });
+
+        function sendMessage() {
+            var inputVal = document.getElementById("message-box").value;
+            var d = new Date()
+            var sent_time = d.getTime();
+            $.post("/messages", {
+                username: USERNAME, message: inputVal, sent_time: sent_time
+            });
+            document.getElementById("message-box").value = "";
+        }
 
         // EVENT HANDLER
         $('#msg-box .sendBox>input').focusout(function () {

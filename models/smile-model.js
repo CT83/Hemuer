@@ -5,6 +5,7 @@ const SmileSchema = mongoose.Schema({
     video_url: String,
     username: String,
     expression: String,
+    sent_time: Number,
 }, {
     timestamps: true
 });

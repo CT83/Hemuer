@@ -64,7 +64,6 @@ async function listenOnMessagesQueue() {
 
 async function publishMessageToQueue(message) {
     try {
-        console.log(connection)
         channel.sendToQueue("messages", Buffer.from(JSON.stringify(message)))
         console.log(`Message sent successfully ${JSON.stringify(message)}`);
     }
