@@ -86,7 +86,7 @@
                         if (field.expression != null) {
                             addMessageBubble(field.username, "I was " + field.expression, sent_time = field.sent_time, seek_time = field.seek_time, you = false, play_sound = mute)
                         } else {
-                            addMessageBubble(field.username, field.message, you = false, sent_time = field.sent_time, play_sound = mute)
+                            addMessageBubble(field.username, field.message, field.sent_time, null, false, mute)
                         }
                     }
                 });
