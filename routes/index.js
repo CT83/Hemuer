@@ -3,6 +3,8 @@ var router = express.Router();
 var mq = require("../mq_utils");
 var controller = require("../controllers/smile-controller")
 var Smile = require("../models/smile-model")
+var uuid = require('uuid/v4')
+
 
 // Add smile to rabbitmq
 router.post('/add-expression', function (req, res, next) {
@@ -32,7 +34,7 @@ router.get('/recent-expressions-and-messages', function (req, res, next) {
       messages = mq.MESSAGES
       sm_list = smiles.concat(messages)
       sm_list = sm_list.sort(function(a,b) {return a.sent_time - b.sent_time});
-      res.send({ sm_list })
+      res.send({ data:sm_list })
     }).catch(err => {
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving data."
@@ -48,6 +50,7 @@ router.post('/messages', function (req, res, next) {
     username: req.body.username,
     message: req.body.message,
     sent_time: req.body.sent_time,
+    _id: uuid(),
   }
   mq.publishMessageToQueue(message)
   res.send({ message: 'Message Sent!' });

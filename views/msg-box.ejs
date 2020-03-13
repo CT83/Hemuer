@@ -264,8 +264,12 @@
         function newMsgRender(data) {
             $('#msg-box .chats ul>li.pending').remove();
             (data.you == true) ? _cl = 'you' : _cl = 'him';
-            if (data.seek_time != null)
+            if (data.seek_time != null) {
                 var seekText = ' at <a onclick="seekTo(' + data.seek_time + ')" class="text-info">' + data.fSeek_time + '</a>'
+            }
+            else {
+                var seekText = "";
+            }
             $('#msg-list')
                 .append('<li><div class="msg ' + _cl + '">' +
                     '<span class="partner">' + data.from + seekText + '</span>' +
@@ -330,7 +334,21 @@
                 });
             }
             document.getElementById("message-box").value = "";
+            addMessageBubble("You", inputVal, sent_time, null, true, true)
+            document.getElementById('scroll-pane').scrollTop = 100000000000;
         }
+
+        var input = document.getElementById("message-box");
+
+        // Execute a function when the user releases a key on the keyboard
+        input.addEventListener("keyup", function (event) {
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                sendMessage()
+            }
+        });
 
         // EVENT HANDLER
         $('#msg-box .sendBox>input').focusout(function () {

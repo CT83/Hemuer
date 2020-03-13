@@ -46,6 +46,7 @@
                     var sent_time = d.getTime();
                     addMessageBubble(username = "You", message = "I was " + expression, sent_time = sent_time, seek_time = seek_time, you = true);
                     addExpressionToQueue(seek_time, "", USERNAME, expression)
+                    document.getElementById('scroll-pane').scrollTop = 100000000000;
                     if (topExpression == 'happy') {
                         slowShake()
                     }
@@ -70,8 +71,8 @@
         var addedIds = [];
         // Add users except You to side pane, add ids not added
         setInterval(function properAddToSidePane() {
-            $.getJSON("/recent-expressions", function (result) {
-                $.each(result['smiles'], function (i, field) {
+            $.getJSON("/recent-expressions-and-messages", function (result) {
+                $.each(result['data'], function (i, field) {
                     if (!addedIds.includes(field._id) && field.username != USERNAME) {
                         addedIds.push(field._id)
                         field.seek_time = field.time;
