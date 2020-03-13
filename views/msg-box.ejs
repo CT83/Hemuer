@@ -270,12 +270,18 @@
             else {
                 var seekText = "";
             }
-            var fSent_time = new Date(data.sent_time);
+            var fSent_date = new Date(data.sent_time);
+            var hours = fSent_date.getHours();
+
+            var minutes = fSent_date.getMinutes();
+
+            var seconds = fSent_date.getSeconds();
+            var fSent_time = hours + ":" + minutes + ":" + seconds;
             $('#msg-list')
                 .append('<li><div class="msg ' + _cl + '">' +
                     '<span class="partner">' + data.from + seekText + '</span>' +
                     data.msg +
-                    '<span class="time">' + fSent_time.toDateString() + '</span>' +
+                    '<span class="time">' + fSent_time + " " + fSent_date.toDateString() + '</span>' +
                     '</div>' +
                     '</li>');
         }

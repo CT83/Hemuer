@@ -13,7 +13,7 @@ router.post('/add-expression', function (req, res, next) {
     video_url: req.body.video_url,
     username: req.body.username,
     expression: req.body.expression,
-    sent_time:req.body.sent_time,
+    sent_time: req.body.sent_time,
   }
   mq.publishToQueue(message)
   res.send({ message: 'Smile Registered' });
@@ -33,8 +33,8 @@ router.get('/recent-expressions-and-messages', function (req, res, next) {
       smiles = smiles.reverse();
       messages = mq.MESSAGES
       sm_list = smiles.concat(messages)
-      sm_list = sm_list.sort(function(a,b) {return a.sent_time - b.sent_time});
-      res.send({ data:sm_list })
+      sm_list = sm_list.sort(function (a, b) { return a.sent_time - b.sent_time });
+      res.send({ data: sm_list })
     }).catch(err => {
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving data."
@@ -62,6 +62,12 @@ router.get('/messages', function (req, res, next) {
   res.send({ messages: mq.MESSAGES });
 });
 
+
+/* GET home page. */
+router.get('/reset-messages', function (req, res, next) {
+  mq.MESSAGES = [];
+  res.send("Messages Reset!");
+});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
