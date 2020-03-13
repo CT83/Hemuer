@@ -64,6 +64,7 @@ exports.saveSmile = (input) => {
         time: input.time,
         video_url: input.video_url,
         username: input.username,
+        sent_time: input.sent_time,
         expression: input.expression,
     });
     // Save Survey in the database

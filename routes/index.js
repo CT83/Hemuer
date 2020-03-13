@@ -11,6 +11,7 @@ router.post('/add-expression', function (req, res, next) {
     video_url: req.body.video_url,
     username: req.body.username,
     expression: req.body.expression,
+    sent_time:req.body.sent_time,
   }
   mq.publishToQueue(message)
   res.send({ message: 'Smile Registered' });
@@ -29,11 +30,9 @@ router.get('/recent-expressions-and-messages', function (req, res, next) {
     .then(smiles => {
       smiles = smiles.reverse();
       messages = mq.MESSAGES
-      console.log(smiles)
       sm_list = smiles.concat(messages)
-      sm_list = sortByProp(sm_list, "sent_time")
-
-      res.send({ data })
+      sm_list = sm_list.sort(function(a,b) {return a.sent_time - b.sent_time});
+      res.send({ sm_list })
     }).catch(err => {
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving data."
@@ -48,8 +47,8 @@ router.post('/messages', function (req, res, next) {
   message = {
     username: req.body.username,
     message: req.body.message,
+    sent_time: req.body.sent_time,
   }
-  console.log(message)
   mq.publishMessageToQueue(message)
   res.send({ message: 'Message Sent!' });
 });

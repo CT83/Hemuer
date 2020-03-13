@@ -39,11 +39,13 @@
         time_update_interval = setInterval(function () {
             if (topExpression !== null && prevPred != topExpression) {
                 if (topExpression != 'neutral' && topExpression != 'angry') {
-                    var time = player.getCurrentTime();
+                    var seek_time = player.getCurrentTime();
                     var expression = topExpression;
                     var username = USERNAME;
-                    addMessageBubble("You", "I was " + expression, time, you = true);
-                    addExpressionToQueue(time, "", username, expression)
+                    var d = new Date();
+                    var sent_time = d.getTime();
+                    addMessageBubble(username = "You", message = "I was " + expression, sent_time = sent_time, seek_time = seek_time, you = true);
+                    addExpressionToQueue(seek_time, "", USERNAME, expression)
                     if (topExpression == 'happy') {
                         slowShake()
                     }

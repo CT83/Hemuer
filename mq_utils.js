@@ -51,6 +51,7 @@ async function listenOnMessagesQueue() {
         channel.consume("messages", message => {
             const input = JSON.parse(message.content.toString());
             console.log("Message Recieved! " + message.content.toString())
+            input.sent_time = parseInt(input.sent_time)
             MESSAGES.push(input)
             channel.ack(message);
         })
