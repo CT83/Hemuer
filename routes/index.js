@@ -72,12 +72,12 @@ router.get('/reset-messages', function (req, res, next) {
 /* GET home page. */
 router.get('/', function (req, res, next) {
   video_id =
-    res.render('view', { title: 'Express', video_id: "fN5nN6NYJFs" });
+    res.render('view', { title: 'Home', video_id: "fN5nN6NYJFs" });
 });
 
 /* GET temp page. */
-router.get('/temp', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/about', function (req, res, next) {
+  res.render('about', { title: 'About' });
 });
 
 module.exports = router;
