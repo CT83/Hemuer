@@ -33,9 +33,9 @@ exports.create = (req, res) => {
 // Find a single survey with a id
 exports.findAll = (req, res) => {
     Smile.find()
-        .then(smiles => {
-            console.log("Fetched Smiles:" + smiles);
-            res.send({ smiles });
+        .then(expressions => {
+            console.log("Fetched Smiles:" + expressions);
+            res.send({ expressions });
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving data."

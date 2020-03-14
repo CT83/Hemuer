@@ -25,4 +25,11 @@
         });
     }
 
+    function roundNearest(x, n) {
+        return Math.ceil(x / n) * n;
+    }
+
+    function removeDuplicates(array) {
+        return array.filter((a, b) => array.indexOf(a) === b)
+    };
 </script>

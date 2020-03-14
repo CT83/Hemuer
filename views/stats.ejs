@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../views/partials/head.ejs', {title})%>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="./javascripts/chartist-plugin-axistitle.js"></script>
+    <%- include('../views/utils.ejs')%>
+</head>
+
+<body data-spy="scroll" data-target="#navbar1" data-offset="60">
+
+    <%- include('../views/partials/header.ejs')%>
+
+    <section id="cards" class="container" style="padding-top: 10vh;">
+        <h1>
+            Stats
+        </h1>
+
+        <h4>Video Time/Smiles</h4>
+        <p>The line chart below shows the distribution of users' facial expressions versus the length of the video in
+            seconds.</p>
+        <div class="ct-chart ct-perfect-fourth container mb-5"></div>
+
+
+    </section>
+
+    <script>
+
+        var emotionVtime = {
+            'happy': [],
+            'sad': [],
+            'surprised': [],
+            'angry': [],
+            'fearful': [], //and more
+        }
+        $.getJSON("/all-expressions", function (result) {
+            $.each(result['expressions'], function (i, field) {
+                emotionVtime[field.expression].push(roundNearest(field.time, 60))
+            });
+            var grouped = {};
+
+
+            for (var [key, value] of Object.entries(emotionVtime)) {
+                var valueSet = removeDuplicates(value)
+
+                if (grouped[key] == null) {
+                    grouped[key] = [];
+                }
+
+                valueSet.forEach(no => {
+                    const occ = value.filter(x => x === no).length  // -> 3
+                    grouped[key][no] = occ;
+                });
+
+
+            }
+            var h = [];
+            var s = [];
+            for (var key of grouped['happy'].keys()) {
+                if (grouped['happy'][key]) {
+                    // h.push([key, grouped['happy'][key]])
+                    h.push(key)
+                    s.push(grouped['happy'][key])
+                }
+            }
+            console.log(h)
+
+            var data = {
+                // A labels array that can contain any sort of values
+                labels: h,
+                // Our series array that contains series objects or in this case series data arrays
+                series: [
+                    s
+                ]
+            };
+
+            // Create a new line chart object where as first parameter we pass in a selector
+            // that is resolving to our chart container element. The Second parameter
+            // is the actual data object.
+            new Chartist.Line('.ct-chart', data, {
+                plugins: [
+                    Chartist.plugins.ctAxisTitle({
+                        axisX: {
+                            axisTitle: 'Time (seconds)',
+                            axisClass: 'ct-axis-title',
+                            offset: {
+                                x: 0,
+                                y: 35
+                            },
+                            textAnchor: 'middle'
+                        },
+                        axisY: {
+                            axisTitle: 'Smiles',
+                            axisClass: 'ct-axis-title',
+                            offset: {
+                                x: 0,
+                                y: 0
+                            },
+                            textAnchor: 'middle',
+                            flipTitle: false
+                        }
+                    })
+                ]
+            });
+        });
+
+
+    </script>
+
+
+    <%- include('../views/effects.ejs')%>
+
+    <%- include('../views/partials/footer.ejs')%>
+
+</body>
+
+</html>

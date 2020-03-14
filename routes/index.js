@@ -19,7 +19,7 @@ router.post('/add-expression', function (req, res, next) {
   res.send({ message: 'Smile Registered' });
 });
 
-router.get('/all-smiles', controller.findAll);
+router.get('/all-expressions', controller.findAll);
 
 router.get('/recent-expressions', controller.recent);
 
@@ -72,12 +72,16 @@ router.get('/reset-messages', function (req, res, next) {
 /* GET home page. */
 router.get('/', function (req, res, next) {
   video_id =
-    res.render('view', { title: 'Home', video_id: "fN5nN6NYJFs" });
+    res.render('view', { title: 'Home', video_id: "35_FVzA0XU0" });
 });
 
 /* GET temp page. */
 router.get('/about', function (req, res, next) {
   res.render('about', { title: 'About' });
+});
+/* GET temp page. */
+router.get('/stats', function (req, res, next) {
+  res.render('stats', { title: 'Stats' });
 });
 
 module.exports = router;
