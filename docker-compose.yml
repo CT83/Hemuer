@@ -1,21 +1,32 @@
 version: "3.3"
 
 services:
-  database:
-    container_name: smile-det-mongo
-    image: mongo:latest
+  rabbitmq:
+    container_name: hemuer-mq
+    image: rabbitmq:3.8.3
+    ports:
+      - "5672:5672"
 
+  database:
+    container_name: hemuer-db
+    image: mongo:latest
     volumes:
       - /mongodb/data:/data/db
-
     ports:
       - 27017:27017
       - 27019:27019
 
-  rabbitmq:
-    image: rabbitmq:3.8.3
+  app:
+    build: .
+    container_name: hemuer-app
+    environment:
+      - IN_DOCKER=True
+    command: ["/bin/bash","./wait-for-it.sh", "rabbitmq:5672", "-t", "120", "--", "npm", "start"]
+    depends_on:
+      - rabbitmq
+      - database
     ports:
-      - "5672:5672"
+      - "3000:3000"
 
 volumes:
   data:

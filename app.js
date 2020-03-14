@@ -25,22 +25,25 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-// Connecting to the database
-mongoose.connect(dbConfig.url, {
-  useNewUrlParser: true
-}).then(() => {
-  console.log("Successfully connected to the database");
-}).catch(err => {
-  console.log('Could not connect to the database. Exiting now...', err);
-  process.exit();
-});
+connectDB()
+function connectDB() {
+  // Connecting to the database
+  mongoose.connect(dbConfig.url, {
+    useNewUrlParser: true
+  }).then(() => {
+    console.log("Successfully connected to the database");
+  }).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    setTimeout(connectDB(), 3000)
+  });
+}
 
 var mq = require("./mq_utils");
 var contr = require("./controllers/smile-controller")
 mq.start().then((conn) => {
   mq.listenOnQueue(contr.saveSmile);
   mq.listenOnMessagesQueue();
-  
+
 });
 
 setInterval(function () {

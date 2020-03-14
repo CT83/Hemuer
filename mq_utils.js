@@ -1,6 +1,11 @@
 var amqp = require('amqplib');
 
-var amqUrl = process.env.AMQ_URL || 'amqp://localhost';
+var devUrl = 'amqp://localhost'
+if (process.env.IN_DOCKER) {
+    devUrl = 'amqp://rabbitmq'
+}
+
+var amqUrl = process.env.AMQ_URL || devUrl;
 var connection = null
 var channel = null
 var MESSAGES = []
