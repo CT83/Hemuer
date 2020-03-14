@@ -57,7 +57,7 @@
     if (USERNAME == null) {
         genName = generateName()
         do {
-            USERNAME = prompt("Please enter your name!", genName);
+            USERNAME = prompt("Please enter your name! This will be how others see you in the chat.", genName);
         } while (USERNAME == null || USERNAME == "");
         localStorage.setItem('username', USERNAME)
     }

@@ -91,6 +91,45 @@
         }, 2000)
     </script>
 
+    <div id="modalCode" class="modal fade hide" style="display: block; padding-right: 17px;" aria-modal="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header align-items-center">
+                    <h3 class="mb-0">Site wants to use your Camera?</h3><button type="button" id="modal-close"
+                        class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                </div>
+                <div class="modal-body d-block py-3">
+                    <h5>Let <a href="https://github.com/CT83">me</a> explain.</h5>
+
+                    <p>Hemuer, uses your camera to see your face and detect when you smile!
+                        <br>
+                        The Facial Detection is done in the browser itself.
+                        <br><br>
+                        <strong>No video ever leaves your device.</strong> <br>
+                        <br>
+                        <a href="https://github.com/ct83/Hemuer-AI-Expression-Detector/">View Hemuer-AI on Github</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var firstTime = localStorage.getItem("firstTime");
+            if (firstTime == null) {
+                $(window).on('load', function () {
+                    $('#modalCode').modal('show');
+                    localStorage.setItem('firstTime', "False")
+                });
+            } else {
+                $("#modalCode .close").click()
+                $("#modalCode").remove()
+            }
+        });
+    </script>
+
     <%- include('../views/effects.ejs')%>
     <%- include('../views/utils.ejs')%>
     <%- include('../views/partials/footer.ejs')%>
