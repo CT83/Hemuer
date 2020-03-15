@@ -46,3 +46,4 @@ Detailed blog post [coming soon](https://dev.to/rohansawant).
 
 ## Credits
 
+* [Vincent Mühler](https://github.com/justadudewhohacks/face-api.js/) for Face Recognition
