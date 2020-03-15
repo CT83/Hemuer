@@ -40,7 +40,7 @@
 
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 pt-4">
-                            <a href="#info" class="btn btn-outline-light btn-lg">
+                            <a href="#about-info" class="btn btn-outline-light btn-lg">
                                 More
                                 <i class="fa fa-chevron-down"></i>
                             </a>
@@ -53,16 +53,21 @@
     </div>
     </div>
 
-    <section id="cards" class="container pt-4 mt-10">
+    <section id="about-info" class="container pt-4 mt-10">
         <div class="d-flex my-3">
             <div class="jumbotron w-100 py-5 mx-auto">
                 <h1>What is Hemuer?</h1>
                 <h4>Hemuer, is an AI Emotion Detection Tool build using NodeJS, MongoDB and RabbitMQ, and TensorFlowJS.
                 </h4>
                 <p class="lead">
-                    It watches users as they watch a video, and logs when the users smile. The data recorded can
-                    be used to skip to the funniest parts of the video!
+                    It watches users as they watch a video, and logs when the users smile.
                     <br>
+                    Insights can be gathered from collected data!
+                    <br><br>
+                    <small>Something went wrong? <br>
+                        The browser did no ask for camera permission? Camera preview not
+                        visible? <a href="https://github.com/CT83/Hemuer-AI-Expression-Detector/issues">Report it
+                            here.</a></small>
                 </p>
             </div>
         </div>
@@ -83,10 +88,9 @@
                                         bits</strong></li>
                             </ul>
                         </p>
-                        <a href="/" class="btn btn-primary mt-auto copyable">Check It Out<a href=""
-                                class="copyable-trigger" data-original-title="" title="">&lt;&gt;</a></a>
+                        <a href="/" class="btn btn-primary mt-auto copyable">Check It Out</a>
                     </div>
-                    <a href="" class="copyable-trigger" data-original-title="" title="">&lt;&gt;</a>
+
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
@@ -95,13 +99,62 @@
                         <h1 class="display-2 text-primary"><span class="ion ion-ios-cube"></span>
                         </h1>
                         <h4 class="card-title text-primary">Privacy First</h4>
-                        <p class="card-text">Facial Recognition is done in the browser itself. No video ever leaves your device. <br>
-                        Check your Network Panel in Dev Tools to verify this! 
+                        <p class="card-text">Facial Recognition is done in the browser itself. No video ever leaves your
+                            device. <br>
+                            Check your Network Panel in Dev Tools to verify this!
                         </p>
-                        <a href="" class="copyable-trigger"
-                                data-original-title="" title="">&lt;&gt;</a>
                     </div>
-                    <a href="" class="copyable-trigger" data-original-title="" title="">&lt;&gt;</a>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 copyable">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <h1 class="display-2 text-primary"><span class="ion ion-ios-cog"></span></h1>
+                        <h4 class="card-title text-primary">Scaleable</h4>
+                        <p class="card-text">
+                            Hemuer, is powered by <strong>RabbitMQ</strong>, this adds realtime chat support!
+                            <br>
+                            Transactions go to the MQ first, then are stored in the database.<br>
+                            This keeps things up and running even during high traffic!
+                        </p>
+                        <a href="#arch-overview" class="btn btn-primary mt-auto copyable">More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 copyable">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <h1 class="display-2 text-primary"><span class="ion ion-ios-analytics"></span></h1>
+                        <h4 class="card-title text-primary">Data Driven</h4>
+                        <p class="card-text">
+                            The <a href="/stats"><strong>Stats</strong></a> page displays Smiles vs their Position in
+                            Video.
+                            <br>
+                            This can be used to find, seek and skip to the funniest bits of the video.
+                        </p>
+                        <a href="/stats" class="btn btn-primary mt-auto copyable">Check It Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 copyable">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <h1 class="display-2 text-primary"><span class="ion ion-ios-bulb"></span>
+                        </h1>
+                        <h4 class="card-title text-primary">Future Scope?</h4>
+                        <p class="card-text">
+                            A <strong>Chrome Extension</strong> for YouTube? <br>
+                            An Plugin for Streaming Services to analyze how people react to their content?<br>
+                            A Tool for <strong>Focus Groups</strong> and <strong>Scientific Studies</strong>? <br>
+                            <em>Something creepy straight out of 1984?</em>
+                        </p>
+                        <a href="https://twitter.com/intent/tweet?text=@_Rohan_Sawant_%20Ssup%20bro." data-size="large"
+                            class="btn btn-primary mt-auto copyable">Tweet at me!
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
@@ -114,16 +167,46 @@
                             <br>
                             Can I get a star?
                         </p>
-                        <a href="https://github.com/ct83/Hemuer-AI-Expression-Detector/" class="btn btn-primary mt-auto copyable">View on Github<a href="" class="copyable-trigger"
-                                data-original-title="" title="">&lt;&gt;</a></a>
+                        <a href="https://github.com/ct83/Hemuer-AI-Expression-Detector/"
+                            class="btn btn-primary mt-auto copyable">View on Github
+                        </a>
                     </div>
-                    <a href="" class="copyable-trigger" data-original-title="" title="">&lt;&gt;</a>
                 </div>
+            </div>
+        </div>
+
+        <div class="card bg-primary text-white h-100 mb-5">
+            <div class="card-body d-flex flex-column align-items-start">
+                <h4 class="card-title">Don't be a Stranger!</h4>
+                <p class="card-text">
+                    Need help deploying this?<br>
+                    Can you make ... which does ...? <em>Maybe.</em><br>
+                </p>
+                <a href="mailto:rohansawantct83@gmail.com" class="btn btn-primary border-white mt-auto"><i
+                        class="fa fa-envelope"></i> Reach Out to Me!</a>
+                <small class="p-1">
+                    <a class="text-white" href="https://github.com/CT83">Github</a>
+                    <a class="text-white" href="https://twitter.com/_Rohan_Sawant_">Twitter</a>
+                    <a class="text-white" href="https://www.linkedin.com/in/rohan-sawant-code/">LinkedIn</a>
+                </small>
             </div>
         </div>
     </section>
 
-
+    <script>
+        $(function () {
+            $('a[href*=\\#]:not([href=\\#])').on('click', function () {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.substr(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            });
+        });
+    </script>
 
     <%- include('../views/effects.ejs')%>
     <%- include('../views/utils.ejs')%>
