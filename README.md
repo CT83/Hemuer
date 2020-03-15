@@ -42,7 +42,21 @@ Detailed blog post [coming soon](https://dev.to/rohansawant).
 2. Visit http://localhost:3000/
 3. Smile. 🙂
 
+### Production Deployment
 
+1. Deploy the NodeJS App on Heroku
+
+   This should work right out of the box, if you follow the current repo struct.
+
+2. Create a MQ on CloudAMQP and add the as an environment variable. `AMQ_URL`
+
+3. Create a MongoDB add on for the App
+
+4. Boom! Done
+
+## License
+
+This project is licensed under the Apache License - see the [LICENSE.md](https://github.com/CT83/Hemuer-AI-Expression-Detector/blob/master/LICENSE) file for details
 
 ## Credits
 
