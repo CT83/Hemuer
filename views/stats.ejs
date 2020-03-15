@@ -37,7 +37,7 @@
         }
         $.getJSON("/all-expressions", function (result) {
             $.each(result['expressions'], function (i, field) {
-                emotionVtime[field.expression].push(roundNearest(field.time, 15))
+                emotionVtime[field.expression].push(roundNearest(field.time, 2))
             });
             var grouped = {};
 
