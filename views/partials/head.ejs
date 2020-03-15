@@ -55,7 +55,8 @@
 
     var USERNAME = localStorage.getItem("username");
     if (USERNAME == null) {
-        genName = generateName()
+        // genName = generateName()
+        genName = ""
         do {
             USERNAME = prompt("Please enter your name! This will be how others see you in the chat.", genName);
         } while (USERNAME == null || USERNAME == "");
