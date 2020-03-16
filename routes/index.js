@@ -15,8 +15,12 @@ router.post('/add-expression', function (req, res, next) {
     expression: req.body.expression,
     sent_time: req.body.sent_time,
   }
-  mq.publishToQueue(message)
-  res.send({ message: 'Smile Registered' });
+  if (message.time == 0) {
+    res.send({ message: 'Expressions at 0 are not recorded' });
+  } else {
+    mq.publishToQueue(message)
+    res.send({ message: 'Smile Registered' });
+  }
 });
 
 router.get('/all-expressions', controller.findAll);
