@@ -6,7 +6,7 @@
 [![Twitter](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FCT83%2FHemuer-AI-Expression-Detector%2Fstyle=social)](https://twitter.com/intent/tweet?text=Check%20out%20https://github.com/CT83/Hemuer-AI-Expression-Detector%20by%20@_Rohan_Sawant_ )
 
 ### [View Live Version!](https://hemeur.herokuapp.com/) - https://hemeur.herokuapp.com/
-
+### [Read the Blog!](https://dev.to/rohansawant/i-made-an-ai-tool-to-detect-your-facial-expressions-while-you-watch-a-video-4g4n)
 
 
 Hemeur is an AI Tool to record facial expressions of users as they watch a video and then visualize the most funny parts of it!
