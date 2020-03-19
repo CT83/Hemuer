@@ -32,7 +32,7 @@ exports.create = (req, res) => {
 
 // Find a single survey with a id
 exports.findAll = (req, res) => {
-    Smile.find()
+    Smile.find().limit(100)
         .then(expressions => {
             console.log("Fetched Smiles:" + expressions);
             res.send({ expressions });
