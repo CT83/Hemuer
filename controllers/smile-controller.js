@@ -34,7 +34,6 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     Smile.find().limit(100)
         .then(expressions => {
-            console.log("Fetched Smiles:" + expressions);
             res.send({ expressions });
         }).catch(err => {
             res.status(500).send({
