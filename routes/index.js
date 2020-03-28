@@ -32,7 +32,7 @@ function sortByProp(data, prop) {
 };
 
 router.get('/recent-expressions-and-messages', function (req, res, next) {
-  Smile.find().sort({ $natural: -1 }).limit(25)
+  Smile.find().sort({ $natural: -1 }).limit(6)
     .then(smiles => {
       smiles = smiles.reverse();
       messages = mq.MESSAGES
