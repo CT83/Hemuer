@@ -17,7 +17,7 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "ejs-lint": "^1.0.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-partials": "^0.3.0",
     "http-errors": "~1.6.3",
     "mongoose": "^5.9.2",
